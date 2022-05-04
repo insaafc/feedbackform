@@ -1,0 +1,174 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-color: powderblue;
+      }
+
+      p {
+        color: #333333;
+      }
+      .feedbackform {
+        width: 100%;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .feedbackform {
+          width: 100%;
+        }
+      }
+    </style>
+    <script type="text/javascript">
+            //deletes textboxes and prompts user to confirm
+            function deletefunction() {
+              const element = document.getElementById("line1");
+              element.remove();
+
+              if (confirm("Are you sure you would like to delete this textbox?")) {
+                txt = "You pressed OK!";
+              } else {
+                txt = "You pressed Cancel!";
+              }
+              document.getElementById("line1").innerHTML = txt;
+            }
+
+            //counts the amount of text boxes added
+
+            var counter = 1;
+            var dynamicInput = [];
+
+            //adds more text boxes
+
+            function addInput() {
+              var newdiv = document.createElement("div");
+              newdiv.id = dynamicInput[counter];
+              newdiv.innerHTML =
+                "Line" +
+                (counter + 1) +
+                " <input type='text' name='myInputs[]' maxlength='40'> <input type='button' value='x' onClick='removeInput(" +
+                dynamicInput[counter] +
+                ");'>";
+              document.getElementById("line").appendChild(newdiv);
+              counter++;
+            }
+
+            //removes inputs / textboxes
+
+            function removeInput(id) {
+              var elem = document.getElementById(id);
+              return elem.parentNode.removeChild(elem);
+            }
+
+            ///creates a max length and creates new input
+            $(".inputs").keyup(function () {
+              if (this.value.length == this.maxLength) {
+                $(this).next(".inputs").focus();
+              }
+
+              //create a counter for maxlength in text box
+              $("#yourtextarea").keypress(function() {
+          if($(this).val().length > 1000) {
+              //display your warinig the way you chose
+              var newdivalert = document.createElement("divalert");
+              newdivalert.innerHTML = alert ('Characters left: ')
+         }
+
+      });
+            //   $("#feedbackform").keypress(function () {
+            //     $("#info").text("Characters left: " + (1000 - $(this).val().length));
+            //   });
+            // });
+    </script>
+  </head>
+  <title>Input Screen Test</title>
+  <body>
+    <div id="feedback" class="feedbackform col-12">
+      <h3>Please give your feedback</h3>
+      <p>Click New Line if you need more space</p>
+      <p>Click X to remove the current line</p>
+      <br />
+      <p>
+        Your review must be at least 50 characters, and no more than 1000
+        characters
+      </p>
+      <form method="post" id="feedbackform" class="col-12">
+        <div id="line" class="col-12">
+          <label for="line">Line 1 </label>
+          <input type="text" id="line" name="line" maxlength="40" />
+          <input
+            onclick="deletefunction()"
+            class="button"
+            name="delete"
+            type="submit"
+            value="X"
+            style="margin-left: 4%; margin-top: 50px; width: 15%"
+          />
+          <input
+            type="button"
+            id="new_input"
+            value="New Line"
+            onclick="addInput();"
+          />
+          <br /><br />
+        </div>
+
+        <div id="line" class="col-12">
+          <label for="line">Line 2</label>
+          <input type="text" id="line" name="line" maxlength="40" />
+          <input
+            onclick="deletefunction()"
+            class="button"
+            name="delete"
+            type="submit"
+            value="X"
+            style="margin-left: 4%; margin-top: 50px; width: 15%"
+          />
+          <input
+            type="button"
+            id="new_input"
+            value="New Line"
+            onclick="addInput();"
+          />
+          <br /><br />
+        </div>
+
+        <div id="line" class="col-12">
+          <label for="line">Line 3</label>
+          <input type="text" id="line" name="line" maxlength="40" />
+          <input
+            onclick="deletefunction()"
+            class="button"
+            name="delete"
+            type="submit"
+            value="X"
+            style="margin-left: 4%; margin-top: 50px; width: 15%"
+          />
+          <input
+            type="button"
+            id="new_input"
+            value="New Line"
+            onclick="addInput();"
+          />
+          <br /><br />
+        </div>
+        <div id="info"></div>
+        <textarea
+          class="col-12"
+          rows="5"
+          cols="60"
+          name="description"
+          id="yourtextarea"
+        >
+              Enter details here...
+          </textarea
+        ><br />
+      </form>
+    </div>
+  </body>
+</html>
